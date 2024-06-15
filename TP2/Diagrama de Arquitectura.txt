@@ -1,0 +1,39 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+' uncomment the following line and comment the first to use locally
+' !include C4_Context.puml
+
+LAYOUT_TOP_DOWN()
+'LAYOUT_AS_SKETCH()
+LAYOUT_WITH_LEGEND()
+
+
+Person(usuarioFinal, "Usuario Final", "Empleados de cada empresa cliente.")
+Person(usuarioGestor, "Usuario Gestor", "Encargados de asignar y gestionar las capacitaciones.")
+Person(usuarioAdmin, "Usuario Administrador", "Gerentes de la empresa cliente.")
+
+Enterprise_Boundary(c0, "Capacitate Platform") {
+    Person(superUsuario, "Super Usuario", "Usuario con acceso a todas las áreas de la plataforma.")
+    Person(generadorContenido, "Generador de Contenido", "Empleados de 'Capacitate' que crean el contenido.")
+    Person(planificadorCapacitaciones, "Planificador de Capacitaciones", "Encargados de crear y gestionar capacitaciones.")
+    
+    System_Boundary(webApp, "Aplicación Web") {
+        System(dashboardFinal, "Dashboard Usuario Final", "Web", "Visualiza y gestiona sus capacitaciones.")
+        System(dashboardAdmin, "Dashboard Administrador", "Web", "Gestiona todas las funcionalidades administrativas.")
+    }
+    
+    System(server, "Servidor", "Host", "Aloja la aplicación web y los servicios.")
+    SystemDb(db, "Base de Datos", "SQL", "Almacena los datos de usuarios, capacitaciones, y progreso.")
+}
+
+Rel(usuarioFinal, dashboardFinal, "Utiliza para gestionar sus capacitaciones")
+Rel(usuarioGestor, dashboardAdmin, "Utiliza para asignar y gestionar capacitaciones")
+Rel(usuarioAdmin, dashboardAdmin, "Utiliza para administrar usuarios y configuraciones")
+Rel(generadorContenido, dashboardAdmin, "Utiliza para subir contenido de capacitaciones")
+Rel(planificadorCapacitaciones, dashboardAdmin, "Utiliza para crear y gestionar capacitaciones")
+Rel(superUsuario, webApp, "Accede a todas las funcionalidades")
+
+Rel(dashboardFinal, server, "Solicitudes de acceso y datos")
+Rel(dashboardAdmin, server, "Solicitudes de acceso y datos")
+Rel(server, db, "Lee y escribe datos")
+@enduml
