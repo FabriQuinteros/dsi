@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Método de Pago</title>
+
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+            rel="stylesheet">
+        <style>
+            body {
+                background-color: #f8f9fa;
+            }
+            .navbar-custom {
+                background-color: #343a40;
+            }
+            .navbar-custom .navbar-brand,
+            .navbar-custom .nav-link {
+                color: white;
+            }
+            .main-content {
+                margin-top: 30px;
+                max-width: 600px;
+            }
+            .total {
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="navbar-placeholder"></div>
+
+        <div class="container main-content">
+            <h2>Método de Pago</h2>
+
+            <h4>Resumen del Pedido</h4>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio Unitario</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ladrillo Hueco 12x18x33</td>
+                        <td><span id="cantidad-ladrillo">5</span></td>
+                        <td>$390.00</td>
+                        <td>$1950.00</td>
+                    </tr>
+                    <tr>
+                        <td>Viga 4 mts</td>
+                        <td><span id="cantidad-viga">3</span></td>
+                        <td>$10,619.00</td>
+                        <td>$31,857.00</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3" class="total">Descuento</td>
+                        <td class="total" id="total-descuento">$5,800.00</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="total">Total</td>
+                        <td class="total" id="total-pedido">$28.007.00</td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <h4>Seleccione un Método de Pago</h4>
+            <div class="mb-3">
+                <select class="form-select" id="metodo-pago" required>
+                    <option value disabled selected>Seleccione un método de
+                        pago</option>
+                    <option value="tarjeta">Tarjeta de Crédito/Débito</option>
+                    <option value="transferencia">Transferencia
+                        Bancaria</option>
+                    <option value="efectivo">Efectivo</option>
+                </select>
+            </div>
+
+            <button type="button" class="btn btn-primary"
+                id="confirmar-pago">Confirmar Pago</button>
+        </div>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+        <script>
+            fetch('navbar.html') 
+                .then(response => response.text())  
+                .then(data => {
+                    document.getElementById('navbar-placeholder').innerHTML = data;
+                })
+                .catch(error => console.error('Error al cargar el navbar:', error));
+        </script>
+
+        <script>
+            document.getElementById('confirmar-pago').addEventListener('click', function() {
+                const metodoPago = document.getElementById('metodo-pago').value;
+                if (metodoPago) {
+                    alert(`Pago confirmado con método: ${metodoPago}`);
+                } else {
+                    alert('Por favor, seleccione un método de pago.');
+                }
+            });
+        </script>
+    </body>
+</html>
