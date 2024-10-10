@@ -1,144 +1,139 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Lista de Productos</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de Productos</title>
 
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-            rel="stylesheet">
-        <style>
-                body {
-            background-color: #f8f9fa;
-        }
-        .navbar-custom {
-            background-color: #343a40;
-        }
-        .navbar-custom .navbar-brand,
-        .navbar-custom .nav-link {
-            color: white;
-        }
-        .main-content {
-            margin-top: 30px;
-        }
-        .product-table {
-            margin-top: 20px;
-        }
-        .table th, .table td {
-            vertical-align: middle;
-        }
-        .btn-custom {
-            background-color: #007bff;
-            color: white;
-        }
-        .btn-custom:hover {
-            background-color: #0056b3;
-        }
-        .quantity-input {
-            width: 80px;
-        }
-        .product-table {
-            margin-top: 30px;
-        }
-        .table th, .table td {
-            vertical-align: middle;
-        }
-        .btn-custom {
-            background-color: #28a745;
-            color: white;
-        }
-        .btn-custom:hover {
-            background-color: #218838;
-        }
-        .product-description {
-            font-size: 0.9em;
-            color: #6c757d;
-        }
-        .quantity-input {
-            width: 80px;
-        }
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+      .navbar-custom {
+        background-color: #343a40;
+      }
+      .navbar-custom .navbar-brand,
+      .navbar-custom .nav-link {
+        color: white;
+      }
+      .main-content {
+        margin-top: 30px;
+      }
+      .product-table {
+        margin-top: 20px;
+      }
+      .table th,
+      .table td {
+        vertical-align: middle;
+      }
+      .btn-custom {
+        background-color: #007bff;
+        color: white;
+      }
+      .btn-custom:hover {
+        background-color: #0056b3;
+      }
+      .quantity-input {
+        width: 80px;
+      }
+      .product-table {
+        margin-top: 30px;
+      }
+      .table th,
+      .table td {
+        vertical-align: middle;
+      }
+      .btn-custom {
+        background-color: #28a745;
+        color: white;
+      }
+      .btn-custom:hover {
+        background-color: #218838;
+      }
+      .product-description {
+        font-size: 0.9em;
+        color: #6c757d;
+      }
+      .quantity-input {
+        width: 80px;
+      }
     </style>
-    </head>
-    <body>
-        <div id="navbar-placeholder"></div>
+  </head>
+  <body>
+    <div id="navbar-placeholder"></div>
 
-        <div class="container">
-            <h1 class="my-4 text-center">Lista de Productos</h1>
-            <table class="table table-striped table-hover product-table">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Producto</th>
-                        <th>Descripción</th>
-                        <th>Dimensiones</th>
-                        <th>Precio</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Ladrillo Hueco</td>
-                        <td>
-                            <p class="product-description">
-                                Ladrillo de cerramiento, especial para tabiques
-                                divisorios y cerramientos.
-                                Ideal para ambientes interiores y muros de
-                                cierre.
-                            </p>
-                        </td>
-                        <td>12x18x33 cm</td>
-                        <td>$390,00</td>
-                        <td>
-                            <button class="btn btn-custom">Agregar a la
-                                Cotización</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Viga</td>
-                        <td>
-                            <p class="product-description">
-                                Utilizada para techos en construcción. Se coloca
-                                sobre las paredes
-                                y se complementa con ladrillos y malla sima.
-                            </p>
-                        </td>
-                        <td>4 mts</td>
-                        <td>$10,619.00</td>
-                        <td>
-                            <button class="btn btn-custom">Agregar a la
-                                Cotización</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Bloque Pre-armado</td>
-                        <td>
-                            <p class="product-description">
-                                Bloques de cemento pre-armados, ideales para la
-                                construcción de muros y
-                                estructuras de soporte.
-                            </p>
-                        </td>
-                        <td>20x20x40 cm</td>
-                        <td>$850,00</td>
-                        <td>
-                            <button class="btn btn-custom">Agregar a la
-                                Cotización</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+    <div class="container">
+      <h1 class="my-4 text-center">Lista de Productos</h1>
+      <table class="table table-striped table-hover product-table">
+        <thead class="table-dark">
+          <tr>
+            <th>Producto</th>
+            <th>Descripción</th>
+            <th>Dimensiones</th>
+            <th>Precio</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Ladrillo Hueco</td>
+            <td>
+              <p class="product-description">
+                Ladrillo de cerramiento, especial para tabiques divisorios y
+                cerramientos. Ideal para ambientes interiores y muros de cierre.
+              </p>
+            </td>
+            <td>12x18x33 cm</td>
+            <td>$390,00</td>
+            <td>
+              <button class="btn btn-custom">Agregar a la Cotización</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Viga</td>
+            <td>
+              <p class="product-description">
+                Utilizada para techos en construcción. Se coloca sobre las
+                paredes y se complementa con ladrillos y malla sima.
+              </p>
+            </td>
+            <td>4 mts</td>
+            <td>$10,619.00</td>
+            <td>
+              <button class="btn btn-custom">Agregar a la Cotización</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Bloque Pre-armado</td>
+            <td>
+              <p class="product-description">
+                Bloques de cemento pre-armados, ideales para la construcción de
+                muros y estructuras de soporte.
+              </p>
+            </td>
+            <td>20x20x40 cm</td>
+            <td>$850,00</td>
+            <td>
+              <button class="btn btn-custom">Agregar a la Cotización</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
-        <script>
-            fetch('navbar.html') 
-                .then(response => response.text())  
-                .then(data => {
-                    document.getElementById('navbar-placeholder').innerHTML = data;
-                })
-                .catch(error => console.error('Error al cargar el navbar:', error));
-        </script>
-    </body>
+    <script>
+      fetch("navbar.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("navbar-placeholder").innerHTML = data;
+        })
+        .catch((error) => console.error("Error al cargar el navbar:", error));
+    </script>
+  </body>
 </html>
