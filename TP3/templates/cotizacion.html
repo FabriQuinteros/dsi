@@ -9,6 +9,10 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
     <style>
       body {
         background-color: #f8f9fa;
@@ -56,7 +60,8 @@
           Modificar medidas
         </button>
         <span class="text-muted"
-          >Medidas: Ancho: <span id="anchoMedida">0</span> m, Largo:
+          >Medidas: Ancho: <span id="anchoMedida">0</span>
+          m, Largo:
           <span id="largoMedida">0</span> m, Alto:
           <span id="altoMedida">0</span> m</span
         >
@@ -69,6 +74,7 @@
             <th>Cantidad</th>
             <th>Precio Unitario</th>
             <th>Subtotal</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -82,8 +88,16 @@
                 readonly
               />
             </td>
-            <td>$390.00</td>
+            <td>
+              <span class="text-decoration-line-through">$433.33</span>
+              <span>$390.00 (10% off)</span>
+            </td>
             <td>$0.00</td>
+            <td>
+              <button class="btn btn-danger btn-sm delete-row">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
           </tr>
           <tr>
             <td>Viga 4 mts</td>
@@ -95,17 +109,36 @@
                 readonly
               />
             </td>
-            <td>$10,619.00</td>
+            <td>$10619.00</td>
             <td>$0.00</td>
+            <td>
+              <button class="btn btn-danger btn-sm delete-row">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
           </tr>
         </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="3" class="text-end">Total</td>
+            <td id="total">$0.00</td>
+            <td></td>
+          </tr>
+        </tfoot>
       </table>
       <a
         href="./pago.html"
         class="btn btn-custom"
         id="painButton"
         style="display: none"
-        >Pagar</a
+        >Confirmar cotización</a
+      >
+      <a
+        href="./pago.html"
+        class="btn btn-custom"
+        id="painButton"
+        style="display: none"
+        >Confirmar cotización</a
       >
     </div>
 
@@ -185,9 +218,7 @@
           document.getElementById("navbar-placeholder").innerHTML = data;
         })
         .catch((error) => console.error("Error al cargar el navbar:", error));
-    </script>
 
-    <script>
       document
         .getElementById("calcularCantidad")
         .addEventListener("click", function () {
@@ -198,33 +229,44 @@
 
           const totalSuperficie = ancho * largo * alto;
 
-          document.querySelectorAll(".quantity-input")[1].value = Math.ceil(
-            totalSuperficie / 4
-          ); // Para vigas
-          document.querySelectorAll(".quantity-input")[0].value = Math.ceil(
-            totalSuperficie / 0.071
-          ); // Para ladrillos
+          const quantityInputs = document.querySelectorAll(".quantity-input");
+          const subtotals = document.querySelectorAll("td:nth-child(4)");
 
-          document.querySelectorAll("td")[3].textContent =
-            "$" +
-            (
-              document.querySelectorAll(".quantity-input")[0].value * 390
-            ).toFixed(2);
-          document.querySelectorAll("td")[7].textContent =
-            "$" +
-            (
-              document.querySelectorAll(".quantity-input")[1].value * 10619
-            ).toFixed(2);
+          quantityInputs[0].value = Math.ceil(totalSuperficie / 0.071); // Para ladrillos
+          quantityInputs[1].value = Math.ceil(totalSuperficie / 4); // Para vigas
+
+          subtotals[0].textContent =
+            "$" + (quantityInputs[0].value * 390).toFixed(2);
+          subtotals[1].textContent =
+            "$" + (quantityInputs[1].value * 10619).toFixed(2);
 
           document.getElementById("anchoMedida").textContent = ancho;
           document.getElementById("largoMedida").textContent = largo;
           document.getElementById("altoMedida").textContent = alto;
+
+          updateTotal();
 
           const modal = bootstrap.Modal.getInstance(
             document.getElementById("modalMedidas")
           );
           modal.hide();
         });
+
+      document.querySelectorAll(".delete-row").forEach((button) => {
+        button.addEventListener("click", function () {
+          const row = this.closest("tr");
+          row.remove();
+          updateTotal();
+        });
+      });
+
+      function updateTotal() {
+        let total = 0;
+        document.querySelectorAll("td:nth-child(4)").forEach((subtotal) => {
+          total += parseFloat(subtotal.textContent.replace("$", ""));
+        });
+        document.getElementById("total").textContent = "$" + total.toFixed(2);
+      }
     </script>
   </body>
 </html>
